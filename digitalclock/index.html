@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content=
+		"width=device-width,
+		initial-scale=1.0" />
+
+	<title>Digital Clock</title>
+
+	<style>
+		#clock {
+			background-image: radial-gradient(rgb(87, 216, 36) , rgb(97, 217, 36), rgb(206, 17, 165));
+			font-size: 100px;
+		
+			width: 60vw;
+			margin: 100px;
+			height: auto;
+			text-align: center;
+			border: 2px solid black;
+			border-radius: 20px;
+			
+			transition: transform 1s, height 1s, width 1s;
+            cursor: pointer;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div id="clock" data-tilt>8:10:45</div>
+
+	<script>
+		setInterval(showTime, 1000);
+		function showTime() {
+
+			let time = new Date();
+			let hour = time.getHours();
+			let min = time.getMinutes();
+			let sec = time.getSeconds();
+			let date = time.getDate();
+			let month = time.getMonth();
+			let year = time.getFullYear();
+		
+			am_pm = "AM";
+
+
+			if (hour > 12) {
+				hour -= 12;
+				am_pm = "PM";
+			}
+			if (hour == 0) {
+				hr = 12;
+				am_pm = "AM";
+			}
+
+			hour = hour < 10 ? "0" + hour : hour;
+			min = min < 10 ? "0" + min : min;
+			sec = sec < 10 ? "0" + sec : sec;
+
+			let currentTime = date + '/'+ month + '/' + year  + " time is "   +  hour + ":"
+				+ min + ":" + sec + am_pm;
+
+			document.getElementById("clock")
+				.innerHTML = currentTime;
+		}
+
+		
+	</script>
+	<script src="jquery-3.6.0.js"></script>
+	<script src="tilt.jquery.min.js"></script> 
+	<script src="tilt.jquery.js"></script>
+</body>
+
+</html>
